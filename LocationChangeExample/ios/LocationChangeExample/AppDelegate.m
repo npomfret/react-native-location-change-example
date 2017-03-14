@@ -16,10 +16,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  //this seems to be required in order to run on a physical device
+#ifdef DEBUG
+  [[RCTBundleURLProvider sharedSettings] setJsLocation:@"192.168.1.64"];
+  //[[RCTBundleURLProvider sharedSettings] setJsLocation:@"localhost"];
+#endif
+
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
-
+  
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"LocationChangeExample"
                                                initialProperties:nil
